@@ -23,7 +23,7 @@ export default function Login({ status, canResetPassword }) {
 
     return (
         <GuestLayout>
-            <Head title="Log in" />
+            <Head title="Log in"/>
 
             {status && (
                 <div className="mb-4 text-sm font-medium text-green-600">
@@ -31,69 +31,86 @@ export default function Login({ status, canResetPassword }) {
                 </div>
             )}
 
-            <form onSubmit={submit}>
-                <div>
-                    <InputLabel htmlFor="email" value="Email" />
+            <form onSubmit={submit} className="card card-body login-card-body shadow">
+                <p className="login-box-msg text-center">Sign in to start your session</p>
 
+                <div className="input-group mb-3">
                     <TextInput
-                        id="email"
                         type="email"
                         name="email"
                         value={data.email}
-                        className="mt-1 block w-full"
+                        className="form-control"
+                        placeholder="Email"
                         autoComplete="username"
-                        isFocused={true}
                         onChange={(e) => setData('email', e.target.value)}
                     />
-
-                    <InputError message={errors.email} className="mt-2" />
+                    <div className="input-group-text">
+                        <i className="bi bi-envelope"></i>
+                    </div>
                 </div>
+                <InputError message={errors.email} className="text-danger mb-2"/>
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
-
+                <div className="input-group mb-3">
                     <TextInput
-                        id="password"
                         type="password"
                         name="password"
                         value={data.password}
-                        className="mt-1 block w-full"
+                        className="form-control"
+                        placeholder="Password"
                         autoComplete="current-password"
                         onChange={(e) => setData('password', e.target.value)}
                     />
+                    <div className="input-group-text">
+                        <i className="bi bi-lock-fill"></i>
+                    </div>
+                </div>
+                <InputError message={errors.password} className="text-danger mb-2"/>
 
-                    <InputError message={errors.password} className="mt-2" />
+                <div className="row mb-3">
+                    <div className="col-8">
+                        <div className="form-check">
+                            <Checkbox
+                                name="remember"
+                                checked={data.remember}
+                                onChange={(e) => setData('remember', e.target.checked)}
+                                className="form-check-input"
+                            />
+                            <label htmlFor="remember" className="form-check-label ms-2">
+                                Remember Me
+                            </label>
+                        </div>
+                    </div>
+
+                    <div className="col-4 d-grid">
+                        <PrimaryButton className="btn btn-primary" disabled={processing}>
+                            {processing ? 'Logging in...' : 'Sign In'}
+                        </PrimaryButton>
+                    </div>
                 </div>
 
-                <div className="mt-4 block">
-                    <label className="flex items-center">
-                        <Checkbox
-                            name="remember"
-                            checked={data.remember}
-                            onChange={(e) =>
-                                setData('remember', e.target.checked)
-                            }
-                        />
-                        <span className="ms-2 text-sm text-gray-600">
-                            Remember me
-                        </span>
-                    </label>
+                <div className="text-center mb-3 d-grid gap-2">
+                    <p>- OR -</p>
+                    <a href="#" className="btn btn-primary">
+                        <i className="bi bi-facebook me-2"></i> Sign in using Facebook
+                    </a>
+                    <a href="#" className="btn btn-danger">
+                        <i className="bi bi-google me-2"></i> Sign in using Google+
+                    </a>
                 </div>
 
-                <div className="mt-4 flex items-center justify-end">
-                    {canResetPassword && (
-                        <Link
-                            href={route('password.request')}
-                            className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                        >
-                            Forgot your password?
+                {canResetPassword && (
+                    <p className="mb-1">
+                        <Link href={route('password.request')} className="text-decoration-none">
+                            I forgot my password
                         </Link>
-                    )}
+                    </p>
+                )}
 
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Log in
-                    </PrimaryButton>
-                </div>
+                <p className="mb-0">
+                    <Link href={route('register')} className="text-decoration-none">
+                        Register a new membership
+                    </Link>
+                </p>
             </form>
         </GuestLayout>
     );

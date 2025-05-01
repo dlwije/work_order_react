@@ -10,4 +10,7 @@ export default defineConfig({
         }),
         react(),
     ],
+    build: {
+        minify: true, // 🚫 Disable minification
+    },
 });

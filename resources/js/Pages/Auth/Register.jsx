@@ -23,96 +23,92 @@ export default function Register() {
 
     return (
         <GuestLayout>
-            <Head title="Register" />
+            <Head title="Register"/>
 
-            <form onSubmit={submit}>
-                <div>
-                    <InputLabel htmlFor="name" value="Name" />
-
-                    <TextInput
+            <form onSubmit={submit} className="card card-body login-card-body">
+                <div className="input-group mb-3">
+                    <input
                         id="name"
                         name="name"
+                        type="text"
                         value={data.name}
-                        className="mt-1 block w-full"
+                        className="form-control"
+                        placeholder="Name"
                         autoComplete="name"
-                        isFocused={true}
                         onChange={(e) => setData('name', e.target.value)}
                         required
                     />
-
-                    <InputError message={errors.name} className="mt-2" />
+                    <div className="input-group-text">
+                        <i className="bi bi-person-fill"></i>
+                    </div>
                 </div>
+                <InputError message={errors.name} className="text-danger small mb-3"/>
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="email" value="Email" />
-
-                    <TextInput
+                <div className="input-group mb-3">
+                    <input
                         id="email"
-                        type="email"
                         name="email"
+                        type="email"
                         value={data.email}
-                        className="mt-1 block w-full"
+                        className="form-control"
+                        placeholder="Email"
                         autoComplete="username"
                         onChange={(e) => setData('email', e.target.value)}
                         required
                     />
-
-                    <InputError message={errors.email} className="mt-2" />
+                    <div className="input-group-text">
+                        <i className="bi bi-envelope-fill"></i>
+                    </div>
                 </div>
+                <InputError message={errors.email} className="text-danger small mb-3"/>
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
-
-                    <TextInput
+                <div className="input-group mb-3">
+                    <input
                         id="password"
-                        type="password"
                         name="password"
+                        type="password"
                         value={data.password}
-                        className="mt-1 block w-full"
+                        className="form-control"
+                        placeholder="Password"
                         autoComplete="new-password"
                         onChange={(e) => setData('password', e.target.value)}
                         required
                     />
-
-                    <InputError message={errors.password} className="mt-2" />
+                    <div className="input-group-text">
+                        <i className="bi bi-lock-fill"></i>
+                    </div>
                 </div>
+                <InputError message={errors.password} className="text-danger small mb-3"/>
 
-                <div className="mt-4">
-                    <InputLabel
-                        htmlFor="password_confirmation"
-                        value="Confirm Password"
-                    />
-
-                    <TextInput
+                <div className="input-group mb-3">
+                    <input
                         id="password_confirmation"
-                        type="password"
                         name="password_confirmation"
+                        type="password"
                         value={data.password_confirmation}
-                        className="mt-1 block w-full"
+                        className="form-control"
+                        placeholder="Confirm Password"
                         autoComplete="new-password"
-                        onChange={(e) =>
-                            setData('password_confirmation', e.target.value)
-                        }
+                        onChange={(e) => setData('password_confirmation', e.target.value)}
                         required
                     />
-
-                    <InputError
-                        message={errors.password_confirmation}
-                        className="mt-2"
-                    />
+                    <div className="input-group-text">
+                        <i className="bi bi-shield-lock-fill"></i>
+                    </div>
                 </div>
+                <InputError
+                    message={errors.password_confirmation}
+                    className="text-danger small mb-3"
+                />
 
-                <div className="mt-4 flex items-center justify-end">
-                    <Link
-                        href={route('login')}
-                        className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                    >
+                <div className="d-flex justify-content-between align-items-center mt-3">
+                    <Link href={route('login')} className="text-sm text-muted">
                         Already registered?
                     </Link>
 
-                    <PrimaryButton className="ms-4" disabled={processing}>
+                    <button type="submit" className="btn btn-primary" disabled={processing}>
                         Register
-                    </PrimaryButton>
+                    </button>
                 </div>
             </form>
         </GuestLayout>
