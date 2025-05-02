@@ -179,7 +179,7 @@
                                     },
                                     error: function( jqXhr, textStatus, errorThrown ){
                                         if(jqXhr.status == 403){
-                                            sweetAlertMsg(MsgHead.PE,'User does not have the right permissions.','warning');
+                                            sweetAlertMsg(MsgHead.PE,'Users does not have the right permissions.','warning');
                                         }else{
                                             console.log(jqXhr)
                                             var errors = '';
@@ -241,7 +241,7 @@
                                     },
                                     error: function( jqXhr, textStatus, errorThrown ){
                                         if(jqXhr.status == 403){
-                                            sweetAlertMsg(MsgHead.PE,'User does not have the right permissions.','warning');
+                                            sweetAlertMsg(MsgHead.PE,'Users does not have the right permissions.','warning');
                                         }else{
                                             var errors = jqXhr.responseJSON.message;
 
@@ -299,7 +299,7 @@
                                     },
                                     error: function( jqXhr, textStatus, errorThrown ){
                                         if(jqXhr.status == 403){
-                                            sweetAlertMsg(MsgHead.PE,'User does not have the right permissions.','warning');
+                                            sweetAlertMsg(MsgHead.PE,'Users does not have the right permissions.','warning');
                                         }else{
                                             var errors = jqXhr.responseJSON.message;
 

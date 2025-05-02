@@ -900,10 +900,10 @@ class Controller extends BaseController
 
         $user = User::find($id);
 
-//        Log::info('User:', [$user]);
+//        Log::info('Users:', [$user]);
 //        Log::info('Role Group:', [$user->roles]);
 //
-//        Log::info('User Roles:', $user->roles->toArray());
+//        Log::info('Users Roles:', $user->roles->toArray());
 //        Log::info('Group Name:', ['group' => $check_group]);
         if (!$user || $user->roles->isEmpty()) {
             return false;

@@ -38,7 +38,7 @@ class CreateSmaPurchasesTable extends Migration
             $table->string('payment_status', 20)->default('pending');
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
-            $table->timestamp('updated_at')->nullable();
+//            $table->timestamp('updated_at')->nullable();
             $table->string('attachment', 55)->nullable();
             $table->tinyInteger('payment_term')->nullable();
             $table->date('due_date')->nullable();

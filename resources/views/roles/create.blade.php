@@ -1,5 +1,5 @@
 @extends('template.master')
-@section('title','New User Type')
+@section('title','New Users Type')
 @section('content')
     <link href="{{ asset('assets/plugins/iCheck/all.css') }}" rel="stylesheet" type="text/css"/>
 

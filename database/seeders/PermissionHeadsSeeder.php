@@ -35,7 +35,7 @@ class PermissionHeadsSeeder extends Seeder
             'Task Type',
             'Vehicle Type',
             'Role',
-            'User',
+            'Users',
             'Company',
             'Employee',
             'Item',

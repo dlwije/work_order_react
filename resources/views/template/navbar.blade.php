@@ -94,7 +94,7 @@
                 <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <!-- User image -->
+                <!-- Users image -->
                 <li class="user-header bg-primary">
                     <img src="{{asset('img/default_user_img.png')}}" class="img-circle elevation-2" alt="User Image">
 
@@ -210,7 +210,7 @@
                     StopLoading();
 
                     if (jqXHR.status == 403) {
-                        sweetAlertMsg('Permission Error', 'User does not have the right permissions.', 'warning');
+                        sweetAlertMsg('Permission Error', 'Users does not have the right permissions.', 'warning');
                     } else {
                         var errors = jqXHR.responseJSON.message;
 
@@ -251,7 +251,7 @@
                     StopLoading();
 
                     if (jqXHR.status == 403) {
-                        sweetAlertMsg('Permission Error', 'User does not have the right permissions.', 'warning');
+                        sweetAlertMsg('Permission Error', 'Users does not have the right permissions.', 'warning');
                     } else {
                         var errors = jqXHR.responseJSON.message;
 

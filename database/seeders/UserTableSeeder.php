@@ -37,7 +37,7 @@ class UserTableSeeder extends Seeder
 
         $sysAdmin_name = 'SysAdmin'; $sysAdmin_email = 'sysadmin@test.com';
         $sysAdmin_password = '12345678'; $sysAdmin_first_name = 'System';
-        $sysAdmin_last_name = 'User'; $sysAdmin_user_name = 'System Admin';
+        $sysAdmin_last_name = 'Users'; $sysAdmin_user_name = 'System Admin';
         $sysAdmin_ip = '127.0.0.1'; $sysAdmin_is_active = 1;
 
         $wo_data = [

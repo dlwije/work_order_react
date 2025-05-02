@@ -336,7 +336,7 @@
                             },
                             error: function( jqXhr, textStatus, errorThrown ){
                                 if(jqXhr.status == 403){
-                                    sweetAlertMsg(MsgHead.PE,'User does not have the right permissions.','warning');
+                                    sweetAlertMsg(MsgHead.PE,'Users does not have the right permissions.','warning');
                                 }
                             }
                         });
@@ -399,7 +399,7 @@
                                     },
                                     error: function( jqXhr, textStatus, errorThrown ){
                                         if(jqXhr.status == 403){
-                                            sweetAlertMsg(MsgHead.PE,'User does not have the right permissions.','warning');
+                                            sweetAlertMsg(MsgHead.PE,'Users does not have the right permissions.','warning');
                                         }
                                     }
                                 });

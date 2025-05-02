@@ -1035,7 +1035,7 @@
                                 StopLoading();
 
                                 if (jqXHR.status == 403) {
-                                    sweetAlertMsg('Permission Error', 'User does not have the right permissions.', 'warning');
+                                    sweetAlertMsg('Permission Error', 'Users does not have the right permissions.', 'warning');
                                 } else {
                                     var errors = jqXHR.responseJSON.message;
 
@@ -1568,7 +1568,7 @@
                                 StopLoading();
 
                                 if (jqXHR.status == 403) {
-                                    sweetAlertMsg('Permission Error', 'User does not have the right permissions.', 'warning');
+                                    sweetAlertMsg('Permission Error', 'Users does not have the right permissions.', 'warning');
                                 } else {
                                     var errors = jqXHR.responseJSON.message;
 
@@ -1620,7 +1620,7 @@
                                 StopLoading();
 
                                 if (jqXHR.status == 403) {
-                                    sweetAlertMsg('Permission Error', 'User does not have the right permissions.', 'warning');
+                                    sweetAlertMsg('Permission Error', 'Users does not have the right permissions.', 'warning');
                                 } else {
                                     var errors = jqXHR.responseJSON.message;
 
@@ -2468,7 +2468,7 @@
                             StopLoading();
 
                             if (jqXHR.status == 403) {
-                                sweetAlertMsg('Permission Error', 'User does not have the right permissions.', 'warning');
+                                sweetAlertMsg('Permission Error', 'Users does not have the right permissions.', 'warning');
                             } else {
                                 var errors = jqXHR.responseJSON.message;
 

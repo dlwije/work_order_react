@@ -188,7 +188,7 @@
                                     },
                                     error: function( jqXhr, textStatus, errorThrown ){
                                         if(jqXhr.status == 403){
-                                            CommonMsg.ivm.sweetAlertMsg(MsgHead.PE,'User does not have the right permissions.','warning');
+                                            CommonMsg.ivm.sweetAlertMsg(MsgHead.PE,'Users does not have the right permissions.','warning');
                                         }
                                     }
                                 });

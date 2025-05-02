@@ -537,48 +537,48 @@ class CustomerController extends Controller
     }
 
     public function getCusDepositDataTableList(Request $request){
-        if ($request->ajax()) {
-            $data = DepositSMA::query()
-                ->select((new DepositSMA())->getTable().'.*',(new CustomerSMA())->getTable().'.name')
-                ->leftJoin((new CustomerSMA())->getTable(),(new CustomerSMA())->getTable().'.id','=', (new DepositSMA())->getTable().'.company_id');
+    if ($request->ajax()) {
+        $data = DepositSMA::query()
+            ->select((new DepositSMA())->getTable().'.*',(new CustomerSMA())->getTable().'.name')
+            ->leftJoin((new CustomerSMA())->getTable(),(new CustomerSMA())->getTable().'.id','=', (new DepositSMA())->getTable().'.company_id');
 
-            try {
-                return Datatables::of($data)
-                    ->editColumn('updated_at', function ($user) {
-                        return $user->updated_at->format('Y-m-d');
-                    })
-                    ->editColumn('amount', function ($user) {
-                        return number_format($user->amount,2);
-                    })
-                    ->addIndexColumn()
-                    ->addColumn('action', function ($row) {
+        try {
+            return Datatables::of($data)
+                ->editColumn('updated_at', function ($user) {
+                    return $user->updated_at->format('Y-m-d');
+                })
+                ->editColumn('amount', function ($user) {
+                    return number_format($user->amount,2);
+                })
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
 
-                        $actionBtn = '';
-                        /*if(auth()->user()->hasPermissionTo('customer-deposit-view') )
-                            $actionBtn .= '<span onclick="laborTaskList.ivm.showDeposits('.$row->id.')" class="btn btn-success btn-sm mr-1" data-toggle="tooltip" data-placement="top" title="See customer deposit list."><i class="fas fa-dollar-sign"></i></span>';
-                        if(auth()->user()->hasPermissionTo('customer-view') )
-                            $actionBtn .= '<span onclick="laborTaskList.ivm.showDetails('.$row->id.')" class="btn btn-success btn-sm mr-1" data-toggle="tooltip" data-placement="top" title="See customer."><i class="fas fa-eye"></i></span>';
-                        if(auth()->user()->hasPermissionTo('customer-edit') )
-                            $actionBtn .= '<span onclick="laborTaskList.ivm.editDetails('.$row->id.')" class="btn btn-primary btn-sm mr-1" data-toggle="tooltip" data-placement="top" title="Edit customer."><i class="fas fa-edit"></i></span>'*/;
-                        if(auth()->user()->hasPermissionTo('customer-delete') )
-                            $actionBtn .= '<span onclick="vehicleTypeList.ivm.deleteRecord(' . $row->id . ')" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete customer deposit."><i class="fas fa-trash-alt"></i></span>';
+                    $actionBtn = '';
+                    /*if(auth()->user()->hasPermissionTo('customer-deposit-view') )
+                        $actionBtn .= '<span onclick="laborTaskList.ivm.showDeposits('.$row->id.')" class="btn btn-success btn-sm mr-1" data-toggle="tooltip" data-placement="top" title="See customer deposit list."><i class="fas fa-dollar-sign"></i></span>';
+                    if(auth()->user()->hasPermissionTo('customer-view') )
+                        $actionBtn .= '<span onclick="laborTaskList.ivm.showDetails('.$row->id.')" class="btn btn-success btn-sm mr-1" data-toggle="tooltip" data-placement="top" title="See customer."><i class="fas fa-eye"></i></span>';
+                    if(auth()->user()->hasPermissionTo('customer-edit') )
+                        $actionBtn .= '<span onclick="laborTaskList.ivm.editDetails('.$row->id.')" class="btn btn-primary btn-sm mr-1" data-toggle="tooltip" data-placement="top" title="Edit customer."><i class="fas fa-edit"></i></span>'*/;
+                    if(auth()->user()->hasPermissionTo('customer-delete') )
+                        $actionBtn .= '<span onclick="vehicleTypeList.ivm.deleteRecord(' . $row->id . ')" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Delete customer deposit."><i class="fas fa-trash-alt"></i></span>';
 
-                        return $actionBtn;
-                    })
-                    ->rawColumns(['action'])
-                    ->removeColumn('created_at')
-                    ->filterColumn('updated_at', function ($query, $keyword) {
-                        $query->whereRaw("DATE_FORMAT(updated_at, '%Y-%m-%d') like ?", ["%$keyword%"]);
-                    })
-                    ->filterColumn('name', function ($query, $keyword) {
-                        $query->whereRaw((new CustomerSMA())->getTable().".name like ?", ["%$keyword%"]);
-                    })
-                    ->make(true);
-            } catch (\Exception $e) {
-                Log::error("getCustomerDepositTableError:".$e->getMessage());
-                $this->responseDataJson(false,['Somethings went wrong'],500);
-            }
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->removeColumn('created_at')
+                ->filterColumn('updated_at', function ($query, $keyword) {
+                    $query->whereRaw("DATE_FORMAT(updated_at, '%Y-%m-%d') like ?", ["%$keyword%"]);
+                })
+                ->filterColumn('name', function ($query, $keyword) {
+                    $query->whereRaw((new CustomerSMA())->getTable().".name like ?", ["%$keyword%"]);
+                })
+                ->make(true);
+        } catch (\Exception $e) {
+            Log::error("getCustomerDepositTableError:".$e->getMessage());
+            $this->responseDataJson(false,['Somethings went wrong'],500);
         }
     }
+}
 
 }

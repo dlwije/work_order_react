@@ -1,5 +1,5 @@
 @extends('template.master')
-@section('title','User Edit')
+@section('title','Users Edit')
 
 @section('content')
     <div class="container-fluid">
