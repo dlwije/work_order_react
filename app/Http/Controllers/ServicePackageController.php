@@ -22,12 +22,12 @@ class ServicePackageController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('permission:service_pkg-list', ['only' =>['index','show', 'getDataTableList']]);
-        $this->middleware('permission:service_pkg-view', ['only' =>['show']]);
-        $this->middleware('permission:service_pkg-edit', ['only' =>['edit', 'editData', 'update']]);
-        $this->middleware('permission:service_pkg-add', ['only' =>['create', 'store']]);
-        $this->middleware('permission:service_pkg-delete', ['only' =>['destroy']]);
+//        $this->middleware('auth');
+//        $this->middleware('permission:service_pkg-list', ['only' =>['index','show', 'getDataTableList']]);
+//        $this->middleware('permission:service_pkg-view', ['only' =>['show']]);
+//        $this->middleware('permission:service_pkg-edit', ['only' =>['edit', 'editData', 'update']]);
+//        $this->middleware('permission:service_pkg-add', ['only' =>['create', 'store']]);
+//        $this->middleware('permission:service_pkg-delete', ['only' =>['destroy']]);
     }
 
     public function index(){

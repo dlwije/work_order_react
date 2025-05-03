@@ -6,6 +6,7 @@ use App\Models\Employee;
 use App\Models\Notification;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 use Yajra\DataTables\DataTables;
 
 class HomeController extends Controller
@@ -17,17 +18,18 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+//        $this->middleware('auth');
     }
 
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Inertia\Response
      */
     public function index()
     {
-        return view('welcome');
+        return Inertia::render('Dashboard/Dashboard');
+//        return view('welcome');
     }
 
     public function myCompany(){

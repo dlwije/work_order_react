@@ -36,11 +36,11 @@ class WorkOrderController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('permission:workorder-view', ['only' =>['index','show', 'getDataTableList']]);
-        $this->middleware('permission:workorder-edit', ['only' =>['edit', 'update']]);
-        $this->middleware('permission:workorder-add', ['only' =>['create', 'store']]);
-        $this->middleware('permission:workorder-delete', ['only' =>['destroy']]);
+//        $this->middleware('auth');
+//        $this->middleware('permission:workorder-view', ['only' =>['index','show', 'getDataTableList']]);
+//        $this->middleware('permission:workorder-edit', ['only' =>['edit', 'update']]);
+//        $this->middleware('permission:workorder-add', ['only' =>['create', 'store']]);
+//        $this->middleware('permission:workorder-delete', ['only' =>['destroy']]);
     }
 
     /**

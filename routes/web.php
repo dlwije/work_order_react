@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
 //    Route::get('/employees/index', [EmployeeController::class, 'index'])->name('employee.table.list');
 //    Route::get('/employees/show', [EmployeeController::class, 'show'])->name('employee.show');
 //    Route::get('/employees/destroy', [EmployeeController::class, 'destroy'])->name('employee.destroy');
-});
+
 
 Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('/home',[HomeController::class,'index'])->name('home');
@@ -305,5 +305,5 @@ Route::get('/user-active-list',[UserController::class,'getUserList'])->name('use
 Route::post('/get-single-user-data',[UserController::class,'getUserData'])->name('user.single.data');
 
 Route::get('/get-employee-r-list',[EmployeeController::class,'getEmpListForRDrop'])->name('emp.drop.r.list');
-
+});
 require __DIR__.'/auth.php';

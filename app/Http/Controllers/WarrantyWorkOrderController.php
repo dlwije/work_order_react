@@ -22,11 +22,11 @@ class WarrantyWorkOrderController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('permission:wworkorder-view', ['only' =>['index','show', 'getDataTableList']]);
-        $this->middleware('permission:wworkorder-edit', ['only' =>['edit', 'update']]);
-        $this->middleware('permission:wworkorder-add', ['only' =>['create', 'store']]);
-        $this->middleware('permission:wworkorder-delete', ['only' =>['destroy']]);
+//        $this->middleware('auth');
+//        $this->middleware('permission:wworkorder-view', ['only' =>['index','show', 'getDataTableList']]);
+//        $this->middleware('permission:wworkorder-edit', ['only' =>['edit', 'update']]);
+//        $this->middleware('permission:wworkorder-add', ['only' =>['create', 'store']]);
+//        $this->middleware('permission:wworkorder-delete', ['only' =>['destroy']]);
     }
 
     /**

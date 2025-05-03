@@ -21,11 +21,11 @@ class VehicleController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('permission:vehicle-view', ['only' => ['index', 'show', 'getDataTableList']]);
-        $this->middleware('permission:vehicle-edit', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:vehicle-add', ['only' => ['create', 'store']]);
-        $this->middleware('permission:vehicle-delete', ['only' => ['destroy']]);
+//        $this->middleware('auth');
+//        $this->middleware('permission:vehicle-view', ['only' => ['index', 'show', 'getDataTableList']]);
+//        $this->middleware('permission:vehicle-edit', ['only' => ['edit', 'update']]);
+//        $this->middleware('permission:vehicle-add', ['only' => ['create', 'store']]);
+//        $this->middleware('permission:vehicle-delete', ['only' => ['destroy']]);
     }
 
     public function index()

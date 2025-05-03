@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Http\Controllers\Controller;
+use App\Services\ControllerService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -86,7 +87,7 @@ class SaleSMA extends Model
             }
 
             $payment_status = $paid == 0 ? 'pending' : $sale->payment_status;
-            if ((new Controller())->formatDecimal($grand_total) == 0 || (new Controller())->formatDecimal($grand_total) <= (new Controller())->formatDecimal($paid)) {
+            if ((new ControllerService())->formatDecimal($grand_total) == 0 || (new Controller())->formatDecimal($grand_total) <= (new Controller())->formatDecimal($paid)) {
                 $payment_status = 'paid';
             } elseif ($sale->due_date <= date('Y-m-d') && !$sale->sale_id) {
                 $payment_status = 'due';
@@ -140,8 +141,8 @@ class SaleSMA extends Model
             $total_points = $scope ? $company->award_points - $points : $company->award_points + $points;
             CustomerSMA::where(['id' => $customer])->update(['award_points' => $total_points]);
         }
-        if ($user && !empty(SettingSMA::getSettingSma()->each_sale) && !((new Controller())->in_group('customer')? true : null) && !((new Controller())->in_group('supplier')? true : null)) {
-            $staff = (new Controller())->getUser($user);
+        if ($user && !empty(SettingSMA::getSettingSma()->each_sale) && !((new ControllerService())->in_group('customer')? true : null) && !((new Controller())->in_group('supplier')? true : null)) {
+            $staff = (new ControllerService())->getUser($user);
             if ($total > 0 || $scope) {
                 $points = floor(($total / SettingSMA::getSettingSma()->each_sale) * SettingSMA::getSettingSma()->sa_point);
             } else {

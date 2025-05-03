@@ -32,14 +32,14 @@ class CustomerController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('permission:customer-list', ['only' =>['index','show', 'getDataTableList']]);
-        $this->middleware('permission:customer-view', ['only' =>['show']]);
-        $this->middleware('permission:customer-edit', ['only' =>['edit', 'update']]);
-        $this->middleware('permission:customer-add', ['only' =>['create', 'store']]);
-        $this->middleware('permission:customer-delete', ['only' =>['destroy']]);
-
-        $this->middleware('permission:deposit', ['only' =>['addDeposit']]);
+//        $this->middleware('auth');
+//        $this->middleware('permission:customer-list', ['only' =>['index','show', 'getDataTableList']]);
+//        $this->middleware('permission:customer-view', ['only' =>['show']]);
+//        $this->middleware('permission:customer-edit', ['only' =>['edit', 'update']]);
+//        $this->middleware('permission:customer-add', ['only' =>['create', 'store']]);
+//        $this->middleware('permission:customer-delete', ['only' =>['destroy']]);
+//
+//        $this->middleware('permission:deposit', ['only' =>['addDeposit']]);
     }
 
     /**

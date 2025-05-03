@@ -56,9 +56,9 @@ class LaborController extends Controller
         $this->serv_pkg_tbl = (new ServicePackage())->getTable();
         $this->jo_serv_pkg_tech_tbl = (new JobOrderServPkgTechnician())->getTable();
 
-        $this->middleware('auth');
-        $this->middleware('permission:labors-assign-list', ['only' =>['index','show', 'getDataTableList']]);
-        $this->middleware('permission:labors-complete-list', ['only' =>['getCompleteTaskDataTableList']]);
+//        $this->middleware('auth');
+//        $this->middleware('permission:labors-assign-list', ['only' =>['index','show', 'getDataTableList']]);
+//        $this->middleware('permission:labors-complete-list', ['only' =>['getCompleteTaskDataTableList']]);
 //        $this->middleware('permission:laborstask-add', ['only' =>['create', 'store']]);
 //        $this->middleware('permission:laborstask-delete', ['only' =>['destroy']]);
     }

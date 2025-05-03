@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DataTables\UserDataTable;
 use App\Models\Employee;
 use App\Models\User;
+use App\Services\ControllerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -151,7 +152,7 @@ class UserController extends Controller
 
             $pos_user = [
                 'username'       => $u_name,
-                'password'       => $this->hashPosPassword($pass),
+                'password'       => (new ControllerService())->hashPosPassword($pass),
                 'email'          => $email,
                 'active'         => 1,
                 'first_name'     => $fname,
@@ -205,17 +206,23 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function edit($id)
     {
         $user = User::find($id);
-        $emp_list = Employee::where('is_active',1)->get();
+        $empList = Employee::where('is_active',1)->get();
         $roles = Role::pluck('name','name')->all();
-        $userRole = $user->roles->pluck('name','name')->all();
+        $userRole = $user->roles->pluck('name')->toArray();
 
+        return Inertia::render('Users/Edit', [
+            'user' => $user,
+            'roles' => $roles, // array of [id => name]
+            'userRole' => $userRole, // array of selected role ids
+            'empList' => $empList, // list of employees with id and full_name
+        ]);
 
-        return view('users.edit',compact('user','roles','userRole','emp_list'));
+//        return view('users.edit',compact('user','roles','userRole','emp_list'));
     }
 
 
@@ -228,13 +235,18 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
+
+        $validator = Validator::make($request->all(), [
             'emp_id' => 'required',
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
             'roles' => 'required'
         ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
 
 
         $input = $request->all();

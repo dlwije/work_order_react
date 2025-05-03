@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Controller;
+use App\Services\ControllerService;
 use Illuminate\Support\Facades\DB;
 
 /*Lakmal
@@ -12,7 +13,7 @@ if(! function_exists('fld')) {
     {
         if ($ldate) {
             $date = explode(' ', $ldate);
-            $jsd = (new Controller())->dateFormats['js_sdate'];
+            $jsd = (new ControllerService())->dateFormats['js_sdate'];
             $inv_date = $date[0];
             $time = $date[1];
             if ($jsd == 'dd-mm-yyyy' || $jsd == 'dd/mm/yyyy' || $jsd == 'dd.mm.yyyy') {

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Http\Controllers\Controller;
+use App\Services\ControllerService;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -56,7 +57,7 @@ class UserTableSeeder extends Seeder
         $sysAdmin = User::create($wo_data);
         $pos_admin_user = [
             'username'       => $sysAdmin_user_name,
-            'password'       => (new Controller())->hashPosPassword($sysAdmin_password),
+            'password'       => (new ControllerService())->hashPosPassword($sysAdmin_password),
             'email'          => $sysAdmin_email,
             'active'         => $sysAdmin_is_active,
             'first_name'     => $sysAdmin_first_name,
@@ -90,7 +91,7 @@ class UserTableSeeder extends Seeder
         ]);
         DB::table('sma_users')->insertGetId([
             'username'       => $serv_writ_user_name,
-            'password'       => (new Controller())->hashPosPassword($serv_writ_password),
+            'password'       => (new ControllerService())->hashPosPassword($serv_writ_password),
             'email'          => $serv_writ_email,
             'active'         => $serv_writ_is_active,
             'first_name'     => $serv_writ_first_name,
@@ -123,7 +124,7 @@ class UserTableSeeder extends Seeder
         ]);
         DB::table('sma_users')->insertGetId([
             'username'       => $serv_mana_user_name,
-            'password'       => (new Controller())->hashPosPassword($serv_mana_password),
+            'password'       => (new ControllerService())->hashPosPassword($serv_mana_password),
             'email'          => $serv_mana_email,
             'active'         => $serv_mana_is_active,
             'first_name'     => $serv_mana_first_name,
@@ -156,7 +157,7 @@ class UserTableSeeder extends Seeder
         ]);
         DB::table('sma_users')->insertGetId([
             'username'       => $stor_mana_user_name,
-            'password'       => (new Controller())->hashPosPassword($stor_mana_password),
+            'password'       => (new ControllerService())->hashPosPassword($stor_mana_password),
             'email'          => $stor_mana_email,
             'active'         => $stor_mana_is_active,
             'first_name'     => $stor_mana_first_name,
@@ -189,7 +190,7 @@ class UserTableSeeder extends Seeder
         ]);
         DB::table('sma_users')->insertGetId([
             'username'       => $warr_mana_user_name,
-            'password'       => (new Controller())->hashPosPassword($warr_mana_password),
+            'password'       => (new ControllerService())->hashPosPassword($warr_mana_password),
             'email'          => $warr_mana_email,
             'active'         => $warr_mana_is_active,
             'first_name'     => $warr_mana_first_name,
@@ -222,7 +223,7 @@ class UserTableSeeder extends Seeder
         ]);
         DB::table('sma_users')->insertGetId([
             'username'       => $cust_user_name,
-            'password'       => (new Controller())->hashPosPassword($cust_password),
+            'password'       => (new ControllerService())->hashPosPassword($cust_password),
             'email'          => $cust_email,
             'active'         => $cust_is_active,
             'first_name'     => $cust_first_name,
@@ -255,7 +256,7 @@ class UserTableSeeder extends Seeder
         ]);
         DB::table('sma_users')->insertGetId([
             'username'       => $supp_user_name,
-            'password'       => (new Controller())->hashPosPassword($supp_password),
+            'password'       => (new ControllerService())->hashPosPassword($supp_password),
             'email'          => $supp_email,
             'active'         => $supp_is_active,
             'first_name'     => $supp_first_name,
@@ -288,7 +289,7 @@ class UserTableSeeder extends Seeder
         ]);
         DB::table('sma_users')->insertGetId([
             'username'       => $cashi_user_name,
-            'password'       => (new Controller())->hashPosPassword($cashi_password),
+            'password'       => (new ControllerService())->hashPosPassword($cashi_password),
             'email'          => $cashi_email,
             'active'         => $cashi_is_active,
             'first_name'     => $cashi_first_name,
@@ -321,7 +322,7 @@ class UserTableSeeder extends Seeder
         ]);
         DB::table('sma_users')->insertGetId([
             'username'       => $tech_user_name,
-            'password'       => (new Controller())->hashPosPassword($tech_password),
+            'password'       => (new ControllerService())->hashPosPassword($tech_password),
             'email'          => $tech_email,
             'active'         => $tech_is_active,
             'first_name'     => $tech_first_name,

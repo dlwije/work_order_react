@@ -35,11 +35,11 @@ class InvoiceController extends Controller
 {
     function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('permission:invoice-list', ['only' => ['index', 'getDataTableList']]);
+//        $this->middleware('auth');
+//        $this->middleware('permission:invoice-list', ['only' => ['index', 'getDataTableList']]);
 //        $this->middleware('permission:invoice-view', ['only' => ['index', 'getDataTableList']]);
-        $this->middleware('permission:invoice-add', ['only' => ['create', 'store']]);
-        $this->middleware('permission:invoice-edit', ['only' => ['edit', 'update', 'editData']]);
+//        $this->middleware('permission:invoice-add', ['only' => ['create', 'store']]);
+//        $this->middleware('permission:invoice-edit', ['only' => ['edit', 'update', 'editData']]);
 //        $this->middleware('permission:invoice-delete', ['only' => ['index', 'getDataTableList']]);
     }
 

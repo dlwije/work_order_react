@@ -16,12 +16,12 @@ class EstimateController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('permission:estimate-list', ['only' =>['index','getDataTableList']]);
-        $this->middleware('permission:estimate-view', ['only' =>['show']]);
-        $this->middleware('permission:estimate-edit', ['only' =>['edit', 'update']]);
-        $this->middleware('permission:estimate-add', ['only' =>['create', 'store']]);
-        $this->middleware('permission:estimate-delete', ['only' =>['destroy']]);
+//        $this->middleware('auth');
+//        $this->middleware('permission:estimate-list', ['only' =>['index','getDataTableList']]);
+//        $this->middleware('permission:estimate-view', ['only' =>['show']]);
+//        $this->middleware('permission:estimate-edit', ['only' =>['edit', 'update']]);
+//        $this->middleware('permission:estimate-add', ['only' =>['create', 'store']]);
+//        $this->middleware('permission:estimate-delete', ['only' =>['destroy']]);
     }
 
     public function index(){

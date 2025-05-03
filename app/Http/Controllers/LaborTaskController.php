@@ -19,27 +19,27 @@ class LaborTaskController extends Controller
     private $dTablePageType;
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('permission:labortask-view', ['only' =>['index','show', 'getDataTableList']]);
-        $this->middleware('permission:labortask-edit', ['only' =>['edit', 'update']]);
-        $this->middleware('permission:labortask-add', ['only' =>['create', 'store']]);
-        $this->middleware('permission:labortask-delete', ['only' =>['destroy']]);
-        $this->middleware('permission:labortask-excel-import', ['only' =>['excelImport']]);
-
-        $this->middleware('permission:task-category-view', ['only' =>['taskCategoryView', 'getTaskCategoryDataTableList']]);
-        $this->middleware('permission:task-category-edit', ['only' =>['getTaskCategorySelectedData', 'updateCategory']]);
-        $this->middleware('permission:task-category-add', ['only' =>['storeCategory']]);
-        $this->middleware('permission:task-category-delete', ['only' =>['destroyCategory']]);
-
-        $this->middleware('permission:task-source-view', ['only' =>['taskSourceView', 'getTaskSourceDataTableList']]);
-        $this->middleware('permission:task-source-edit', ['only' =>['getTaskSourceSelectedData', 'updateSource']]);
-        $this->middleware('permission:task-source-add', ['only' =>['storeSource', 'destroySource']]);
-        $this->middleware('permission:task-source-delete', ['only' =>['destroySource']]);
-
-        $this->middleware('permission:task-type-view', ['only' =>['taskTypeView', 'getTaskTypeDataTableList']]);
-        $this->middleware('permission:task-type-edit', ['only' =>['getTaskTypeSelectedData', 'updateType']]);
-        $this->middleware('permission:task-type-add', ['only' =>['storeType', 'destroyType']]);
-        $this->middleware('permission:task-type-delete', ['only' =>['destroyType']]);
+//        $this->middleware('auth');
+//        $this->middleware('permission:labortask-view', ['only' =>['index','show', 'getDataTableList']]);
+//        $this->middleware('permission:labortask-edit', ['only' =>['edit', 'update']]);
+//        $this->middleware('permission:labortask-add', ['only' =>['create', 'store']]);
+//        $this->middleware('permission:labortask-delete', ['only' =>['destroy']]);
+//        $this->middleware('permission:labortask-excel-import', ['only' =>['excelImport']]);
+//
+//        $this->middleware('permission:task-category-view', ['only' =>['taskCategoryView', 'getTaskCategoryDataTableList']]);
+//        $this->middleware('permission:task-category-edit', ['only' =>['getTaskCategorySelectedData', 'updateCategory']]);
+//        $this->middleware('permission:task-category-add', ['only' =>['storeCategory']]);
+//        $this->middleware('permission:task-category-delete', ['only' =>['destroyCategory']]);
+//
+//        $this->middleware('permission:task-source-view', ['only' =>['taskSourceView', 'getTaskSourceDataTableList']]);
+//        $this->middleware('permission:task-source-edit', ['only' =>['getTaskSourceSelectedData', 'updateSource']]);
+//        $this->middleware('permission:task-source-add', ['only' =>['storeSource', 'destroySource']]);
+//        $this->middleware('permission:task-source-delete', ['only' =>['destroySource']]);
+//
+//        $this->middleware('permission:task-type-view', ['only' =>['taskTypeView', 'getTaskTypeDataTableList']]);
+//        $this->middleware('permission:task-type-edit', ['only' =>['getTaskTypeSelectedData', 'updateType']]);
+//        $this->middleware('permission:task-type-add', ['only' =>['storeType', 'destroyType']]);
+//        $this->middleware('permission:task-type-delete', ['only' =>['destroyType']]);
     }
 
     public function index(){

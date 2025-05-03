@@ -40,14 +40,14 @@ class JobOrderController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('permission:joborder-view', ['only' =>['index','show', 'getDataTableList']]);
-        $this->middleware('permission:joborder-edit', ['only' =>['edit', 'editData', 'update']]);
-        $this->middleware('permission:joborder-add', ['only' =>['create', 'store']]);
-        $this->middleware('permission:joborder-delete', ['only' =>['destroy']]);
-        $this->middleware('permission:jo-cost-unapprove-list', ['only' =>['getTBCostApproveDataTableList']]);
-        $this->middleware('permission:jo-cost-approve', ['only' =>['joborderApproveCost']]);
-        $this->middleware('permission:jo-approved-list', ['only' =>['joborderApproveCost']]);
+//        $this->middleware('auth');
+//        $this->middleware('permission:joborder-view', ['only' =>['index','show', 'getDataTableList']]);
+//        $this->middleware('permission:joborder-edit', ['only' =>['edit', 'editData', 'update']]);
+//        $this->middleware('permission:joborder-add', ['only' =>['create', 'store']]);
+//        $this->middleware('permission:joborder-delete', ['only' =>['destroy']]);
+//        $this->middleware('permission:jo-cost-unapprove-list', ['only' =>['getTBCostApproveDataTableList']]);
+//        $this->middleware('permission:jo-cost-approve', ['only' =>['joborderApproveCost']]);
+//        $this->middleware('permission:jo-approved-list', ['only' =>['joborderApproveCost']]);
     }
 
     public function index(){
