@@ -41,7 +41,7 @@ export default function Navbar({ user }) {
                                 <div className="d-flex">
                                     <div className="flex-shrink-0">
                                         <img
-                                            src=""
+                                            src="/img/default_user_img.png"
                                             alt="User Avatar"
                                             className="img-size-50 rounded-circle me-3"
                                         />
@@ -103,10 +103,10 @@ export default function Navbar({ user }) {
                     </li>
                     {/* end::Fullscreen Toggle */}
                     {/* begin::Users Menu Dropdown */}
-                    <li className="nav-item dropdown user-menu">
+                    <li className="nav-item dropdown1 user-menu">
                         <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img
-                                src={user.avatar || '/default-avatar.png'}
+                                src={user.avatar || '/img/default_user_img.png'}
                                 className="user-image rounded-circle shadow"
                                 alt="User Image"
                             />
@@ -116,7 +116,7 @@ export default function Navbar({ user }) {
                             {/* begin::Users Image */}
                             <li className="user-header text-bg-primary">
                                 <img
-                                    src=""
+                                    src="/img/default_user_img.png"
                                     className="rounded-circle shadow"
                                     alt="User Image"
                                 />

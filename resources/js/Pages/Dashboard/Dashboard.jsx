@@ -1,58 +1,94 @@
 import React, { useEffect } from 'react';
 import Chart from 'chart.js/auto';
 import AdminLayout from "@/lteLayouts/AdminLayout.jsx";
+import {usePage} from "@inertiajs/react";
 
 const Dashboard = () => {
+    const { props } = usePage();
+    const customerTrendsUrl = props.routes.customerTrends;
+    const topCustomerSalesUrl = props.routes.topCustomerSales;
+
     useEffect(() => {
-        new Chart(document.getElementById('pieChart'), {
-            type: 'pie',
-            data: {
-                labels: ['Customer A', 'Customer B', 'Customer C', 'Customer D', 'Customer E'],
-                datasets: [{
-                    data: [300, 50, 100, 40, 120],
-                    backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc']
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false
-            }
-        });
 
-        new Chart(document.getElementById('barChart'), {
-            type: 'bar',
-            data: {
-                labels: ['New', 'Returning'],
-                datasets: [{
-                    label: 'Customers',
-                    data: [200, 150],
-                    backgroundColor: ['#28a745', '#17a2b8']
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false
-            }
-        });
+        const chartInstances = [];
 
-        new Chart(document.getElementById('lineChart'), {
-            type: 'line',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr'],
-                datasets: [{
-                    label: 'Profit & Loss',
-                    data: [3000, 4000, 3200, 4500],
-                    borderColor: '#28a745',
-                    backgroundColor: 'rgba(40, 167, 69, 0.2)',
-                    fill: true
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false
+        const fetchAndRenderCharts = async () => {
+            try {
+                // --- Pie Chart (Top Customers by Sales) ---
+                const pieResponse = await axios.get(topCustomerSalesUrl);
+                const pieCtx = document.getElementById('pieChart').getContext('2d');
+
+                const pieChart = new Chart(pieCtx, {
+                    type: 'pie',
+                    data: {
+                        labels: pieResponse.data.labels,
+                        datasets: pieResponse.data.datasets
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { position: 'bottom' },
+                            title: { display: true, text: 'Top 5 Customers by Sales' }
+                        }
+                    }
+                });
+                chartInstances.push(pieChart);
+
+                // --- Bar Chart (Customer Trends) ---
+                const barResponse = await axios.get(customerTrendsUrl);
+                const barCtx = document.getElementById('barChart').getContext('2d');
+
+                const barChart = new Chart(barCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: barResponse.data.labels,
+                        datasets: barResponse.data.datasets
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: { beginAtZero: true }
+                        },
+                        plugins: {
+                            legend: { display: true }
+                        }
+                    }
+                });
+                chartInstances.push(barChart);
+
+                // --- Line Chart (Static) ---
+                const lineCtx = document.getElementById('lineChart').getContext('2d');
+                const lineChart = new Chart(lineCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'Apr'],
+                        datasets: [{
+                            label: 'Profit & Loss',
+                            data: [3000, 4000, 3200, 4500],
+                            borderColor: '#28a745',
+                            backgroundColor: 'rgba(40, 167, 69, 0.2)',
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false
+                    }
+                });
+                chartInstances.push(lineChart);
+            } catch (err) {
+                console.error("Failed to load chart data", err);
             }
-        });
-    }, []);
+        };
+
+        fetchAndRenderCharts();
+
+        return () => {
+            chartInstances.forEach(chart => chart.destroy());
+        };
+    }, [customerTrendsUrl, topCustomerSalesUrl]);
 
     return (
         <AdminLayout>
@@ -63,18 +99,28 @@ const Dashboard = () => {
                     <div className="card-header">
                         <h3 className="card-title">Top 5 Customers</h3>
                         <div className="card-tools">
-                            <button className="btn btn-tool" data-card-widget="collapse"><i className="fas fa-minus" /></button>
-                            <button className="btn btn-tool" data-card-widget="remove"><i className="fas fa-times" /></button>
+                            {/*<button className="btn btn-tool" data-card-widget="collapse"><i className="fas fa-minus"/>*/}
+                            {/*</button>*/}
+                            {/*<button className="btn btn-tool" data-card-widget="remove"><i className="fas fa-times"/>*/}
+                            {/*</button>*/}
+                            <button type="button" className="btn btn-tool" data-lte-toggle="card-collapse">
+                                <i data-lte-icon="expand" className="bi bi-plus-lg"></i>
+                                <i data-lte-icon="collapse" className="bi bi-dash-lg"></i>
+                            </button>
+                            <button type="button" className="btn btn-tool" data-lte-toggle="card-remove">
+                                <i className="bi bi-x-lg"></i>
+                            </button>
                         </div>
+
                     </div>
                     <div className="card-body">
-                        <canvas id="pieChart" style={{ height: 250 }} />
+                        <canvas id="pieChart" style={{height: 260}}/>
                     </div>
                 </div>
 
                 {/* Bar Chart */}
                 <div className="card card-success">
-                    <div className="card-header">
+                <div className="card-header">
                         <h3 className="card-title">New vs Returning Customers</h3>
                         <div className="card-tools">
                             <button className="btn btn-tool" data-card-widget="collapse"><i className="fas fa-minus" /></button>

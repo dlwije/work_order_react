@@ -32,6 +32,6 @@
         "jquery": "^3.7.1",
         "knockout": "^3.5.1",
         "react-hot-toast": "^2.5.2",
-        "sweetalert2": "^11.19.1"
+        "sweetalert2": "^11.20.0"
     }
 }

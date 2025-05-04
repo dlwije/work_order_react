@@ -10,8 +10,8 @@ export default function UserList({ usersIndexUrl, userCreateUrl, userShowUrl, us
     const tableRef = useRef(null);
 
     useEffect(() => {
-        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-        [...tooltipTriggerList].forEach(tooltipTriggerEl => new Tooltip(tooltipTriggerEl));
+        // const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        // [...tooltipTriggerList].forEach(tooltipTriggerEl => new Tooltip(tooltipTriggerEl));
 
         const table = $(tableRef.current).DataTable({
             processing: true,

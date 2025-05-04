@@ -28,13 +28,38 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Dashboard/Dashboard');
+        return Inertia::render('Dashboard/Dashboard', [
+            'routes' => [
+                'customerTrends' => route('dashboard.customer-trends'),
+                'topCustomerSales' => route('dashboard.top-customer-sales'),
+            ]
+        ]);
 //        return view('welcome');
     }
 
     public function myCompany(){
 
-        return view('my_company');
+        return Inertia::render('Company');
+    }
+
+    // app/Http/Controllers/CompanyController.php
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'BRNo' => 'required|string|max:255',
+            'CompName' => 'required|string|max:255',
+            'Address' => 'required|string',
+            'Email' => 'nullable|email',
+            'WebUrl' => 'nullable|url',
+            'OfcTel' => 'nullable|string',
+            'Mobile' => 'nullable|string',
+            'Fax' => 'nullable|string',
+        ]);
+
+        // Save to DB, e.g.:
+        Company::create($validated);
+
+        return redirect()->back()->with('success', 'Company saved!');
     }
 
     public function getUnreadNotify(){

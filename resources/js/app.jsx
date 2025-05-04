@@ -43,10 +43,7 @@ createInertiaApp({
 
         root.render(<App {...props} />);
 
-        // ✅ Run AdminLTE sidebar init AFTER render
-        setTimeout(() => {
-            initSidebar();
-        }, 0);
+
     },
     progress: {
         color: '#4B5563',

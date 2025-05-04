@@ -12,5 +12,6 @@ export default defineConfig({
     ],
     build: {
         minify: true, // 🚫 Disable minification
+        // emptyOutDir: false, // ✅ Don't clear the build output directory
     },
 });

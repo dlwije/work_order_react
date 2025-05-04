@@ -236,45 +236,45 @@
             // }
 
             document.addEventListener("DOMContentLoaded", function () {
-                {{--$.ajax({--}}
-                {{--    url: '{{ route('dashboard.customer-trends') }}', // your Laravel route--}}
-                {{--    method: 'GET',--}}
-                {{--    success: function (response) {--}}
-                {{--        // Directly use the datasets and labels from the API response--}}
-                {{--        var areaChartData = {--}}
-                {{--            labels: response.labels,--}}
-                {{--            datasets: response.datasets--}}
-                {{--        };--}}
+                $.ajax({
+                    url: '{{ route('dashboard.customer-trends') }}', // your Laravel route
+                    method: 'GET',
+                    success: function (response) {
+                        // Directly use the datasets and labels from the API response
+                        var areaChartData = {
+                            labels: response.labels,
+                            datasets: response.datasets
+                        };
 
-                {{--        // Bar Chart--}}
-                {{--        var barChartCanvas = $('#barChart').get(0).getContext('2d');--}}
-                {{--        var barChartData = $.extend(true, {}, areaChartData);--}}
-                {{--        barChartData.datasets[0] = areaChartData.datasets[1];--}}
-                {{--        barChartData.datasets[1] = areaChartData.datasets[0];--}}
+                        // Bar Chart
+                        var barChartCanvas = $('#barChart').get(0).getContext('2d');
+                        var barChartData = $.extend(true, {}, areaChartData);
+                        barChartData.datasets[0] = areaChartData.datasets[1];
+                        barChartData.datasets[1] = areaChartData.datasets[0];
 
-                {{--        new Chart(barChartCanvas, {--}}
-                {{--            type: 'bar',--}}
-                {{--            data: barChartData,--}}
-                {{--            options: {--}}
-                {{--                responsive: true,--}}
-                {{--                maintainAspectRatio: false,--}}
-                {{--                scales: {--}}
-                {{--                    y: {--}}
-                {{--                        beginAtZero: true--}}
-                {{--                    }--}}
-                {{--                },--}}
-                {{--                plugins: {--}}
-                {{--                    legend: {--}}
-                {{--                        display: true--}}
-                {{--                    }--}}
-                {{--                }--}}
-                {{--            }--}}
-                {{--        });--}}
-                {{--    },--}}
-                {{--    error: function () {--}}
-                {{--        console.error("Failed to load chart data");--}}
-                {{--    }--}}
-                {{--});--}}
+                        new Chart(barChartCanvas, {
+                            type: 'bar',
+                            data: barChartData,
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                },
+                                plugins: {
+                                    legend: {
+                                        display: true
+                                    }
+                                }
+                            }
+                        });
+                    },
+                    error: function () {
+                        console.error("Failed to load chart data");
+                    }
+                });
             });
 
             //-------------
@@ -289,33 +289,33 @@
             }
             //Create pie or douhnut chart
             // You can switch between pie and douhnut using the method below.
-            {{--fetch('{{ route('dashboard.top-customer-sales') }}')--}}
-            {{--    .then(response => response.json())--}}
-            {{--    .then(data => {--}}
-            {{--        const ctx = $('#pieChart').get(0).getContext('2d');--}}
-            {{--        new Chart(ctx, {--}}
-            {{--            type: 'pie',--}}
-            {{--            data: {--}}
-            {{--                labels: data.labels,--}}
-            {{--                datasets: data.datasets--}}
-            {{--            },--}}
-            {{--            options: {--}}
-            {{--                responsive: true,--}}
-            {{--                plugins: {--}}
-            {{--                    legend: {--}}
-            {{--                        position: 'right',--}}
-            {{--                    },--}}
-            {{--                    title: {--}}
-            {{--                        display: true,--}}
-            {{--                        text: 'Top 5 Customers by Sales'--}}
-            {{--                    }--}}
-            {{--                }--}}
-            {{--            }--}}
-            {{--        });--}}
-            {{--    })--}}
-            {{--    .catch(error => {--}}
-            {{--        console.error('Error loading chart data:', error);--}}
-            {{--    });--}}
+            fetch('{{ route('dashboard.top-customer-sales') }}')
+                .then(response => response.json())
+                .then(data => {
+                    const ctx = $('#pieChart').get(0).getContext('2d');
+                    new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: data.labels,
+                            datasets: data.datasets
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    position: 'right',
+                                },
+                                title: {
+                                    display: true,
+                                    text: 'Top 5 Customers by Sales'
+                                }
+                            }
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading chart data:', error);
+                });
 
             var areaChartData = {
                 labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
