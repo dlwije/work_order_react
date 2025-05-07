@@ -23,6 +23,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^6.7.2",
+        "@inertiajs/inertia": "^0.11.1",
         "admin-lte": "^4.0.0-beta3",
         "bootstrap": "^5.3.5",
         "bootstrap-icons": "^1.11.3",
@@ -32,6 +33,7 @@
         "jquery": "^3.7.1",
         "knockout": "^3.5.1",
         "react-hot-toast": "^2.5.2",
+        "react-tooltip": "^5.28.1",
         "sweetalert2": "^11.20.0"
     }
 }

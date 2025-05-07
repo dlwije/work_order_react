@@ -372,26 +372,26 @@ export default function Sidebar({ unlessRole, hasRole, hasPermission, hasAnyPerm
                             </li>
                         )}
 
-                        {(
-                            hasPermission('cus-pay-list') || hasPermission('cus-depo-list')
-                        ) && (
-                            <SidebarMenu
-                                label="Payments"
-                                icon="fas fa-money-bill-wave"
-                                items={[
-                                    hasPermission('cus-pay-list') && {
-                                        name: 'Customer Payment',
-                                        routeName: 'customer.payment.list', // replace with actual route name if available
-                                        key: 'customer-payment'
-                                    },
-                                    hasPermission('cus-depo-list') && {
-                                        name: 'Customer Deposit',
-                                        routeName: 'customer.deposit.list',
-                                        key: 'customer-deposit-list'
-                                    }
-                                ].filter(Boolean)}
-                            />
-                        )}
+                        {/*{(*/}
+                        {/*    hasPermission('cus-pay-list') || hasPermission('cus-depo-list')*/}
+                        {/*) && (*/}
+                        {/*    <SidebarMenu*/}
+                        {/*        label="Payments"*/}
+                        {/*        icon="fas fa-money-bill-wave"*/}
+                        {/*        items={[*/}
+                        {/*            hasPermission('cus-pay-list') && {*/}
+                        {/*                name: 'Customer Payment',*/}
+                        {/*                routeName: 'customer.payment.list', // replace with actual route name if available*/}
+                        {/*                key: 'customer-payment'*/}
+                        {/*            },*/}
+                        {/*            hasPermission('cus-depo-list') && {*/}
+                        {/*                name: 'Customer Deposit',*/}
+                        {/*                routeName: 'customer.deposit.list',*/}
+                        {/*                key: 'customer-deposit-list'*/}
+                        {/*            }*/}
+                        {/*        ].filter(Boolean)}*/}
+                        {/*    />*/}
+                        {/*)}*/}
 
                         {/* Inventory nav */}
                         {hasRole(['Parts Manager', 'System Admin']) && (

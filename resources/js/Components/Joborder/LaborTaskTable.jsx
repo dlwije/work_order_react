@@ -1,10 +1,21 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import LaborTaskModal from "@/Components/Joborder/LaborTaskModal.jsx";
 
 export default function LaborTaskTable({ tasks, onAdd, onChange, onRemove, currency, laborTasksFromLaravel }) {
     const [modalOpen, setModalOpen] = useState(false);
 
-    const laborTasks = laborTasksFromLaravel.map(task => ({
+    // useEffect(() => {
+    //     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    //     const tooltipList = [...tooltipTriggerList].map(
+    //         (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
+    //     );
+    //
+    //     return () => {
+    //         tooltipList.forEach((tooltip) => tooltip.dispose());
+    //     };
+    // }, []);
+
+    const laborTasks = laborTasksFromLaravel?.map(task => ({
         ...task,
         onDelete: () => console.log('delete task', task.id),
     }));
@@ -74,7 +85,8 @@ export default function LaborTaskTable({ tasks, onAdd, onChange, onRemove, curre
                         <th className="text-center" style="">Hour Rate</th>
                         <th className="text-center" style="">Labor Cost</th>
                         <th className="text-center" style="">
-                            Subtotal(<span data-bind="html: default_currenty"></span>)
+                            Subtotal
+                            {/*(<span data-bind="html: default_currenty"></span>)*/}
                         </th>
                         <th className="text-center" style="">
                             <button type="button" className="btn btn-primary"
@@ -86,12 +98,12 @@ export default function LaborTaskTable({ tasks, onAdd, onChange, onRemove, curre
                     </tr>
                     </thead>
                     <tbody>
-                    {tasks.map((task, index) => (
+                    {tasks?.map((task, index) => (
                         <tr key={index}>
                             <td className="text-center">{index + 1}</td>
                             <td>
                                 <input className="form-control form-control-sm"
-                                       value={task.col1}
+                                       value={task.col1 || ''}
                                        onChange={(e) => onChange(index, 'col1', e.target.value)}/>
                             </td>
                             {/*<td>*/}
@@ -101,7 +113,7 @@ export default function LaborTaskTable({ tasks, onAdd, onChange, onRemove, curre
                             {/*</td>*/}
                             <td>
                                 <input type="number" className="form-control form-control-sm"
-                                       value={task.col3}
+                                       value={task.col3 || ''}
                                        onChange={(e) => {
                                            const value = e.target.value;
                                            onChange(index, 'col3', value);
@@ -111,12 +123,12 @@ export default function LaborTaskTable({ tasks, onAdd, onChange, onRemove, curre
                             </td>
                             <td>
                                 <input className="form-control form-control-sm"
-                                       value={task.col4}
+                                       value={task.col4 || ''}
                                        onChange={(e) => onChange(index, 'col4', e.target.value)} />
                             </td>
                             <td>
                                 <input className="form-control form-control-sm"
-                                       value={task.col5}
+                                       value={task.col5 || ''}
                                        onChange={(e) => {
                                            const value = e.target.value;
                                            onChange(index, 'col5', value);
@@ -126,16 +138,16 @@ export default function LaborTaskTable({ tasks, onAdd, onChange, onRemove, curre
                             </td>
                             <td>
                                 <input className="form-control form-control-sm"
-                                       value={task.col6}
+                                       value={task.col6 || ''}
                                        onChange={(e) => onChange(index, 'col6', e.target.value)} />
                             </td>
                             <td>
                                 <input className="form-control form-control-sm"
-                                       value={task.col7}
+                                       value={task.col7 || ''}
                                        onChange={(e) => onChange(index, 'col7', e.target.value)} />
                             </td>
                             <td className="text-center">
-                                <button type="button" className="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-title="Remove this row" onClick={() => onRemove(index)}>
+                                <button type="button" className="btn btn-sm btn-danger" data-tip="Remove this row" onClick={() => onRemove(index)}>
                                     <i className="fas fa-trash"></i>
                                 </button>
                             </td>

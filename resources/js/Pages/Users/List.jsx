@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import 'datatables.net-bs5';
-import { Tooltip } from 'bootstrap';
 import AdminLayout from "@/lteLayouts/AdminLayout.jsx";
 import {Link} from "@inertiajs/react";
 
@@ -31,7 +30,7 @@ export default function UserList({ usersIndexUrl, userCreateUrl, userShowUrl, us
                 },
             ],
             drawCallback: function () {
-                $('[data-toggle="tooltip"]').tooltip();
+                $('[data-bs-toggle="tooltip"]').tooltip();
             },
         });
 

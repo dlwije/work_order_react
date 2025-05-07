@@ -33,6 +33,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Inertia\Inertia;
 use Yajra\DataTables\DataTables;
 use PDF;
 
@@ -51,7 +52,8 @@ class JobOrderController extends Controller
     }
 
     public function index(){
-        return view('job_order/joborder_list');
+//        return view('job_order/joborder_list');
+        return Inertia::render('Joborder/List');
     }
 
     public function getDataTableList(Request $request){
@@ -77,23 +79,23 @@ class JobOrderController extends Controller
                     ->addIndexColumn()
                     ->addColumn('joStatus', function ($row){
                         if($row->jo_status == 0)
-                            $state = '<span class="text-black badge badge-secondary" data-toggle="tooltip" data-placement="top" title="Pending joborder">Pending</span>';// Just created JO
+                            $state = '<span class="text-black badge badge-secondary" data-bs-toggle="tooltip" data-placement="top" data-bs-title="Pending joborder">Pending</span>';// Just created JO
                         elseif($row->jo_status == 1)
-                            $state = '<span class="text-black badge badge-primary" data-toggle="tooltip" data-placement="top" title="Cost approved by service manager">APRVDCST</span>';// Approved WO cost before work commencement
+                            $state = '<span class="text-black badge badge-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cost approved by service manager">APRVDCST</span>';// Approved WO cost before work commencement
                         elseif($row->jo_status == 2)
-                            $state = '<span class="text-black badge badge-info" data-toggle="tooltip" data-placement="top" title="Assigned to labor">ASSIGNED</span>';// waiting in the labor assigned task queue to proceed in specific labor list
+                            $state = '<span class="text-black badge badge-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Assigned to labor">ASSIGNED</span>';// waiting in the labor assigned task queue to proceed in specific labor list
                         elseif($row->jo_status == 3)
-                            $state = '<span class="text-black badge badge-warning" data-toggle="tooltip" data-placement="top" title="Work in progress">WIP</span>';// Task is in work in progress
+                            $state = '<span class="text-black badge badge-warning" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Work in progress">WIP</span>';// Task is in work in progress
                         elseif($row->jo_status == 4)
-                            $state = '<span class="text-black badge badge-success" data-toggle="tooltip" data-placement="top" title="Work is completed partially by technician (s)">WRKPCTD</span>';// task is done by the technicians partially and pending work approve
+                            $state = '<span class="text-black badge badge-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Work is completed partially by technician (s)">WRKPCTD</span>';// task is done by the technicians partially and pending work approve
                         elseif($row->jo_status == 5)
-                            $state = '<span class="text-black badge badge-light badge-success" data-toggle="tooltip" data-placement="top" title="All task are completed by technician (s)">WRKCTD</span>';// Job order all task are done by the technicians and pending work approve
+                            $state = '<span class="text-black badge badge-light badge-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="All task are completed by technician (s)">WRKCTD</span>';// Job order all task are done by the technicians and pending work approve
                         elseif($row->jo_status == 6)
-                            $state = '<span class="text-black badge badge-success" data-toggle="tooltip" data-placement="top" title="All task are approved and sent to cashier">APRVD</span>';// approved task after completing the work
+                            $state = '<span class="text-black badge badge-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="All task are approved and sent to cashier">APRVD</span>';// approved task after completing the work
                         /*elseif($row->jo_status == 7)
                             $state = '<span class="text-black badge badge-success" data-toggle="tooltip" data-placement="top" title="Task sent to cashier">STC</span>';// after completing all tasks sent to cashier*/
                         elseif($row->jo_status == 7)
-                            $state = '<span class="text-black badge badge-success" data-toggle="tooltip" data-placement="top" title="Job order has been invoiced">Invoiced</span>';// Paid the tot amount and completed
+                            $state = '<span class="text-black badge badge-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Job order has been invoiced">Invoiced</span>';// Paid the tot amount and completed
                         else
                             $state = '<span class="text-white badge badge-secondary">-</span>';// Task has no state
                         return $state;
@@ -125,7 +127,8 @@ class JobOrderController extends Controller
     }
 
     public function create(){
-        return view('job_order/create');
+//        return view('job_order/create');
+        return Inertia::render('Joborder/Create');
     }
 
     public function createWoJo(Request $request, $wo_id){

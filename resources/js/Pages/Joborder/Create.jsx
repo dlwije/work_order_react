@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Inertia } from '@inertiajs/inertia';
 import VehicleAccordion from '@/components/JobOrder/VehicleAccordion';
 import LaborTaskTable from '@/components/JobOrder/LaborTaskTable';
-import { Card, CardContent } from '@/components/ui/card';
+// import { Card, CardContent } from '@/components/ui/card';
 import {Link} from "@inertiajs/react";
 import ServicePackagesTable from "@/Components/Joborder/ServicePackagesTable.jsx";
 import InventoryItemInput from "@/Components/Joborder/InventoryItemInput.jsx";
@@ -10,6 +10,7 @@ import InventoryItemsTable from "@/Components/Joborder/InventoryItemsTable.jsx";
 import JobOrderTotals from "@/Components/Joborder/JobOrderTotals.jsx";
 
 export default function Create({ woOptions, cusOptions, vehiOptions, defaultCurrency }) {
+
     const [form, setForm] = useState({
         wo_serial: '',
         jo_type: '',
@@ -144,13 +145,13 @@ export default function Create({ woOptions, cusOptions, vehiOptions, defaultCurr
                         </Link>
                     </div>
                 </div>
-                <CardContent>
+                <div className="card-body">
                     <div className="row">
                         <div className="col-md-2">
                             <label>WO No<span className="text-danger">*</span></label>
                             <select name="wo_serial" id="id_wo_serial_drop" className="form-control"
                                     onChange={handleWOChange}>
-                                {woOptions.map(opt => (
+                                {woOptions?.map(opt => (
                                     <option key={opt.id} value={opt.id}>{opt.text}</option>
                                 ))}
                             </select>
@@ -171,7 +172,7 @@ export default function Create({ woOptions, cusOptions, vehiOptions, defaultCurr
                             <label>Customer</label>
                             <select name="customer" id="ID_cus_name" className="form-control"
                                     onChange={handleCusChange}>
-                                {cusOptions.map(opt => (
+                                {cusOptions?.map(opt => (
                                     <option key={opt.id} value={opt.id}>{opt.text}</option>
                                 ))}
                             </select>
@@ -180,7 +181,7 @@ export default function Create({ woOptions, cusOptions, vehiOptions, defaultCurr
                             <label>Customer</label>
                             <select name="vehicle" id="ID_vehi_name" className="form-control"
                                     onChange={handleVehiChange}>
-                                {vehiOptions.map(opt => (
+                                {vehiOptions?.map(opt => (
                                     <option key={opt.id} value={opt.id}>{opt.text}</option>
                                 ))}
                             </select>
@@ -194,7 +195,7 @@ export default function Create({ woOptions, cusOptions, vehiOptions, defaultCurr
                         </div>
                     </div>
 
-                    <VehicleAccordion form={form}/>
+                    {/*<VehicleAccordion form={form}/>*/}
 
                     <LaborTaskTable
                         tasks={form.laborTaskList}
@@ -234,7 +235,7 @@ export default function Create({ woOptions, cusOptions, vehiOptions, defaultCurr
                             <i className="fas fa-save"></i> Submit
                         </button>
                     </div>
-                </CardContent>
+                </div>
             </div>
         </div>
     );
