@@ -8,8 +8,15 @@ import ServicePackagesTable from "@/Components/Joborder/ServicePackagesTable.jsx
 import InventoryItemInput from "@/Components/Joborder/InventoryItemInput.jsx";
 import InventoryItemsTable from "@/Components/Joborder/InventoryItemsTable.jsx";
 import JobOrderTotals from "@/Components/Joborder/JobOrderTotals.jsx";
+import AdminLayout from "@/lteLayouts/AdminLayout.jsx";
+import select2 from "select2";
+import Select2Dropdown from "@/Components/Select2Dropdown.jsx";
+import AutoComplete from "@/Components/AutoComplete.jsx";
 
 export default function Create({ woOptions, cusOptions, vehiOptions, defaultCurrency }) {
+
+    const [customerSelection, setCustomerSelection] = useState(null);
+    const [vehicleSelection, setVehicleSelection] = useState(0);
 
     const [form, setForm] = useState({
         wo_serial: '',
@@ -59,10 +66,14 @@ export default function Create({ woOptions, cusOptions, vehiOptions, defaultCurr
         setForm(prev => ({ ...prev, [name]: value }));
     };
     const handleCusChange = (e) => {
-        const { name, value } = e.target;
-        setForm(prev => ({ ...prev, [name]: value }));
+        // const { name, value } = e.target;
+        setCustomerSelection(e);
+        setVehicleSelection(prev => prev + 1); // triggers full reset of second dropdown
+        // setForm(prev => ({ ...prev, [name]: value }));
     };
     const handleVehiChange = (e) => {
+        setVehicleSelection(e);
+        console.log(vehicleSelection);
         const { name, value } = e.target;
         setForm(prev => ({ ...prev, [name]: value }));
     };
@@ -131,112 +142,113 @@ export default function Create({ woOptions, cusOptions, vehiOptions, defaultCurr
     };
 
     return (
-        <div className="container-fluid">
-            <div className="card card-primary card-outline">
-                <div className="card-header d-flex justify-between">
-                    <h3 className="card-title">Create Job Order</h3>
-                    <a href="/joborders" className="btn btn-sm btn-secondary">← Go Back</a>
-                </div>
-                <div className="card-header">
-                    <h3 className="card-title">Create User</h3>
-                    <div className="card-tools">
-                        <Link className="btn btn-sm btn-secondary" href={route('joborder.list')}>
-                            <i className="fas fa-hand-o-left"></i> Go Back
-                        </Link>
-                    </div>
-                </div>
-                <div className="card-body">
-                    <div className="row">
-                        <div className="col-md-2">
-                            <label>WO No<span className="text-danger">*</span></label>
-                            <select name="wo_serial" id="id_wo_serial_drop" className="form-control"
-                                    onChange={handleWOChange}>
-                                {woOptions?.map(opt => (
-                                    <option key={opt.id} value={opt.id}>{opt.text}</option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className="col-md-2">
-                            <label>Job Type</label>
-                            <select name="jo_type" className="form-control" onChange={handleJOChange}>
-                                <option value=""></option>
-                                <option value="os">On Site</option>
-                                <option value="op">On Premises</option>
-                            </select>
-                        </div>
-                        <div className="col-md-2">
-                            <label>JO Date</label>
-                            <input type="text" name="jo_date" className="form-control" value={form.jo_date} readOnly/>
-                        </div>
-                        <div className="col-md-2">
-                            <label>Customer</label>
-                            <select name="customer" id="ID_cus_name" className="form-control"
-                                    onChange={handleCusChange}>
-                                {cusOptions?.map(opt => (
-                                    <option key={opt.id} value={opt.id}>{opt.text}</option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className="col-md-2">
-                            <label>Customer</label>
-                            <select name="vehicle" id="ID_vehi_name" className="form-control"
-                                    onChange={handleVehiChange}>
-                                {vehiOptions?.map(opt => (
-                                    <option key={opt.id} value={opt.id}>{opt.text}</option>
-                                ))}
-                            </select>
+        <AdminLayout>
+            <div className="container-fluid">
+                <div className="card card-primary card-outline">
+                    <div className="card-header">
+                        <h3 className="card-title">Create Job Order</h3>
+                        <div className="card-tools">
+                            <Link href={route('joborder.list')} className="btn btn-sm btn-secondary">← Go Back</Link>
                         </div>
                     </div>
 
-                    <div className="row mb-3">
-                        <div className="col-md-12">
-                            <label>Remarks</label>
-                            <textarea name="woRemark" className="form-control" rows="2" value={form.woRemark} readOnly/>
+                    <div className="card-body">
+                        <div className="row">
+                            <div className="col-md-2">
+                                <label>WO No<span className="text-danger">*</span></label>
+                                <AutoComplete
+                                    endpoint={route('workorder.serialno.drop.list')}
+                                    placeholder="Search Serial No..."
+                                    defaultValue=""
+                                    onSelect={(item) => console.log("Selected", item)}
+                                    onChange={handleWOChange}
+                                />
+
+                            </div>
+                            <div className="col-md-2">
+                                <label>Job Type</label>
+                                <select name="jo_type" className="form-control" onChange={handleJOChange}>
+                                    <option value=""></option>
+                                    <option value="os">On Site</option>
+                                    <option value="op">On Premises</option>
+                                </select>
+                            </div>
+                            <div className="col-md-2">
+                                <label>JO Date</label>
+                                <input type="text" name="jo_date" className="form-control" value={form.jo_date} readOnly/>
+                            </div>
+                            <div className="col-md-2">
+                                <label>Customer</label>
+                                <AutoComplete
+                                    endpoint={route('customer.drop.list')}
+                                    placeholder="Search Customer..."
+                                    defaultValue=""
+                                    onSelect={handleCusChange}
+                                />
+                            </div>
+                            <div className="col-md-2">
+                                <label>Vehicle</label>
+                                {customerSelection && (
+                                    <AutoComplete
+                                        endpoint={route('customer.vehicle.byid.drop.list')}
+                                        extraParams={{ id: customerSelection.id }}
+                                        placeholder="Search Vehicle..."
+                                        defaultValue=""
+                                        onSelect={handleVehiChange}
+                                    />
+                                )}
+                            </div>
                         </div>
-                    </div>
 
-                    {/*<VehicleAccordion form={form}/>*/}
+                        <div className="row mb-3">
+                            <div className="col-md-12">
+                                <label>Remarks</label>
+                                <textarea name="woRemark" className="form-control" rows="2" value={form.woRemark} readOnly/>
+                            </div>
+                        </div>
 
-                    <LaborTaskTable
-                        tasks={form.laborTaskList}
-                        onAdd={addLaborTask}
-                        onChange={updateTask}
-                        onRemove={removeTask}
-                        currency={defaultCurrency}
-                    />
+                        {/*<VehicleAccordion form={form}/>*/}
 
-                    <ServicePackagesTable
-                        servicePackages={form.servicePkgList}
-                        onAdd={addServicePkg}
-                        onRemove={removeServicePkg}
-                        currency={defaultCurrency}
-                    />
-
-                    <div className="callout callout-success">
-                        <InventoryItemInput />
-
-                        <InventoryItemsTable
-                            items={form.jbItemList}
-                            onAdd={addJBItems}
-                            onRemove={removeJBItems}
+                        <LaborTaskTable
+                            tasks={form.laborTaskList}
+                            onAdd={addLaborTask}
+                            onChange={updateTask}
+                            onRemove={removeTask}
                             currency={defaultCurrency}
                         />
 
-                        <JobOrderTotals
-                            totals={totals}
-                            onChange={handleTotalsChange}
-                            onCalculateTotal={calculateTotal}
-                            onCalculateDiscount={calculateDiscount}
+                        <ServicePackagesTable
+                            servicePackages={form.servicePkgList}
+                            onAdd={addServicePkg}
+                            onRemove={removeServicePkg}
+                            currency={defaultCurrency}
                         />
-                    </div>
 
-                    <div className="form-group mt-4 text-end">
-                        <button className="btn btn-success btn-sm" onClick={handleSubmit}>
-                            <i className="fas fa-save"></i> Submit
-                        </button>
+                        <div className="card card-outline card-success mb-2">
+                            <InventoryItemInput />
+
+                            <InventoryItemsTable
+                                items={form.jbItemList}
+                                onAdd={addJBItems}
+                                onRemove={removeJBItems}
+                                currency={defaultCurrency}
+                            />
+                        </div>
+                            <JobOrderTotals
+                                totals={totals}
+                                onChange={handleTotalsChange}
+                                onCalculateTotal={calculateTotal}
+                                onCalculateDiscount={calculateDiscount}
+                            />
+
+                        <div className="form-group mt-4 text-end">
+                            <button className="btn btn-success btn-sm" onClick={handleSubmit}>
+                                <i className="fas fa-save"></i> Submit
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </AdminLayout>
     );
 }

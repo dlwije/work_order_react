@@ -32,8 +32,10 @@
         "datatables.net-bs5": "^2.3.0",
         "jquery": "^3.7.1",
         "knockout": "^3.5.1",
+        "lodash.debounce": "^4.0.8",
         "react-hot-toast": "^2.5.2",
         "react-tooltip": "^5.28.1",
+        "select2": "^4.1.0-rc.0",
         "sweetalert2": "^11.20.0"
     }
 }

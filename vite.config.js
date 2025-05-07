@@ -9,7 +9,9 @@ export default defineConfig({
             refresh: true,
         }),
         react(),
+
     ],
+    
     build: {
         minify: true, // 🚫 Disable minification
         // emptyOutDir: false, // ✅ Don't clear the build output directory

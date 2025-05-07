@@ -59,36 +59,23 @@ export default function LaborTaskTable({ tasks, onAdd, onChange, onRemove, curre
     };
 
     return (
-        <div className="card mt-4">
-            <div className="card-header d-flex justify-between">
-                <h5 className="card-title">Labor Tasks</h5>
-                {/*<button type="button" className="btn btn-sm btn-primary" onClick={onAdd}>*/}
-                {/*    <i className="fas fa-plus"></i> Add Row*/}
-                {/*</button>*/}
-            </div>
+        <div className="card card-outline card-info mt-4">
+
             <div className="card-body p-0">
                 <table className="table table-bordered table-sm">
                     <thead className="bg-secondary text-white text-center">
                     <tr>
-                        {/*<th>Particulars</th>*/}
-                        {/*<th>Qty</th>*/}
-                        {/*<th>Rate ({currency})</th>*/}
-                        {/*<th>Amount</th>*/}
-                        {/*<th>Discount</th>*/}
-                        {/*<th>Total</th>*/}
-                        {/*<th style={{width: 30}}></th>*/}
 
                         <th style={{width: 30}}>#</th>
-                        <th style="" className="text-center">Labor Task</th>
-                        <th style="" className="text-center">Hours</th>
-                        <th style="" className="text-center">Act: Hours</th>
-                        <th className="text-center" style="">Hour Rate</th>
-                        <th className="text-center" style="">Labor Cost</th>
-                        <th className="text-center" style="">
+                        <th className="text-center">Labor Task</th>
+                        <th className="text-center">Hours</th>
+                        <th className="text-center">Act: Hours</th>
+                        <th className="text-center">Hour Rate</th>
+                        <th className="text-center">Labor Cost</th>
+                        <th className="text-center">
                             Subtotal
-                            {/*(<span data-bind="html: default_currenty"></span>)*/}
                         </th>
-                        <th className="text-center" style="">
+                        <th className="text-center">
                             <button type="button" className="btn btn-primary"
                                     onClick={()=> {
                                         setModalOpen(true);

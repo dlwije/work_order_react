@@ -79,25 +79,25 @@ class JobOrderController extends Controller
                     ->addIndexColumn()
                     ->addColumn('joStatus', function ($row){
                         if($row->jo_status == 0)
-                            $state = '<span class="text-black badge badge-secondary" data-bs-toggle="tooltip" data-placement="top" data-bs-title="Pending joborder">Pending</span>';// Just created JO
+                            $state = '<span class="text-black badge text-bg-secondary" data-bs-toggle="tooltip" data-placement="top" data-bs-title="Pending joborder">Pending</span>';// Just created JO
                         elseif($row->jo_status == 1)
-                            $state = '<span class="text-black badge badge-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cost approved by service manager">APRVDCST</span>';// Approved WO cost before work commencement
+                            $state = '<span class="text-black badge text-bg-primary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Cost approved by service manager">APRVDCST</span>';// Approved WO cost before work commencement
                         elseif($row->jo_status == 2)
-                            $state = '<span class="text-black badge badge-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Assigned to labor">ASSIGNED</span>';// waiting in the labor assigned task queue to proceed in specific labor list
+                            $state = '<span class="text-black badge text-bg-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Assigned to labor">ASSIGNED</span>';// waiting in the labor assigned task queue to proceed in specific labor list
                         elseif($row->jo_status == 3)
-                            $state = '<span class="text-black badge badge-warning" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Work in progress">WIP</span>';// Task is in work in progress
+                            $state = '<span class="text-black badge text-bg-warning" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Work in progress">WIP</span>';// Task is in work in progress
                         elseif($row->jo_status == 4)
-                            $state = '<span class="text-black badge badge-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Work is completed partially by technician (s)">WRKPCTD</span>';// task is done by the technicians partially and pending work approve
+                            $state = '<span class="text-black badge text-bg-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Work is completed partially by technician (s)">WRKPCTD</span>';// task is done by the technicians partially and pending work approve
                         elseif($row->jo_status == 5)
-                            $state = '<span class="text-black badge badge-light badge-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="All task are completed by technician (s)">WRKCTD</span>';// Job order all task are done by the technicians and pending work approve
+                            $state = '<span class="text-black badge text-bg-light badge-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="All task are completed by technician (s)">WRKCTD</span>';// Job order all task are done by the technicians and pending work approve
                         elseif($row->jo_status == 6)
-                            $state = '<span class="text-black badge badge-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="All task are approved and sent to cashier">APRVD</span>';// approved task after completing the work
+                            $state = '<span class="text-black badge text-bg-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="All task are approved and sent to cashier">APRVD</span>';// approved task after completing the work
                         /*elseif($row->jo_status == 7)
                             $state = '<span class="text-black badge badge-success" data-toggle="tooltip" data-placement="top" title="Task sent to cashier">STC</span>';// after completing all tasks sent to cashier*/
                         elseif($row->jo_status == 7)
-                            $state = '<span class="text-black badge badge-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Job order has been invoiced">Invoiced</span>';// Paid the tot amount and completed
+                            $state = '<span class="text-black badge text-bg-success" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Job order has been invoiced">Invoiced</span>';// Paid the tot amount and completed
                         else
-                            $state = '<span class="text-white badge badge-secondary">-</span>';// Task has no state
+                            $state = '<span class="text-white badge text-bg-secondary">-</span>';// Task has no state
                         return $state;
                     })
                     ->addColumn('action', function ($row) {
